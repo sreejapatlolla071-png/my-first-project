@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf2ff;
+            text-align: center;
+            padding: 40px 15px;
+        }
+
+        .container {
+            background: white;
+            max-width: 350px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px #cccccc;
+        }
+
+        input, button {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #result {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Student Grade Calculator</h2>
+        <p>Enter your details to calculate your grade.</p>
+
+        <input type="text" id="name" placeholder="Enter student name">
+
+        <input type="number" id="marks"
+               placeholder="Enter marks (0-100)"
+               min="0" max="100">
+
+        <button onclick="calculateGrade()">Calculate Grade</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            let name = document.getElementById("name").value.trim();
+            let marks = document.getElementById("marks").value;
+            let result = document.getElementById("result");
+
+            if (name === "" || marks === "") {
+                result.textContent = "Please enter your name and marks.";
+                return;
+            }
+
+            marks = Number(marks);
+
+            if (marks < 0 || marks > 100) {
+                result.textContent = "Marks must be between 0 and 100.";
+                return;
+            }
+
+            let grade;
+
+            if (marks >= 90) {
+                grade = "A";
+            } else if (marks >= 75) {
+                grade = "B";
+            } else if (marks >= 60) {
+                grade = "C";
+            } else if (marks >= 40) {
+                grade = "D";
+            } else {
+                grade = "Fail";
+            }
+
+            result.textContent =
+                "Student: " + name +
+                " | Marks: " + marks +
+                " | Grade: " + grade;
+        }
+    </script>
+
+</body>
+</html>
